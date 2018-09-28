@@ -1,38 +1,43 @@
-# library(ncdf4)
-# library(fields)
-library(raster)
+#=============================================================================#
+# Name   : cropZone_getTimeSerie
+# Author : Jorge Flores
+# Date   : 
+# Version:
+# Aim    : 
+# URL    : 
+#=============================================================================#
+cropZone_getTimeSerie <- function(files, zones, varname = 'chlor_a'){
+  # files <- list of files to read
+  # matrix of [lonmin lonmax latmin latmax], for 2 or more zones, include more rows
+  library(raster)
+  library(ncdf4)
+  
+  time_serie_mat <- matrix(NA, ncol = dim(zones)[1], nrow = length(files))
+  for(i in 1:length(files)){
+    ras <- raster(files[i], varname = varname)
+    for(jj in 1:dim(zones)[1]){
+      extension <- extent(zones[jj,1], zones[jj,2], zones[jj,3], zones[jj,4])
+      rc <- crop(ras, extension)
+      pts <- rasterToPoints(x = rc)
+      pts <- mean(pts[,3], na.rm = T)
+      if (is.nan(pts)) {
+        pts <- NA
+      }
+      time_serie_mat[i, jj] <- pts
+    }
+    print(files[i])
+  }
+  assign(x = 'Time_serie_mat', value = time_serie_mat, .GlobalEnv)
+}
+#=============================================================================#
+# END OF PROGRAM
+#=============================================================================#
 
 dirpath <- 'D:/Clorofila/'
-nc_files <- list.files(path = dirpath, pattern = '.nc', full.names = T, recursive = T)
+files <- list.files(path = dirpath, pattern = '.nc', full.names = T, recursive = T)
+files <- files[1:10]
+zones <- matrix(c(-81.22, -80.7, -5.89, -5.18,  # Sechura
+                  -76.75, -76.15, -14.25, -13.40 # Paracas
+                  ), ncol = 4, byrow = T)
 
-# # Extension Peru
-# xmin <- -100
-# xmax <- -70
-# ymin <- -20
-# ymax <- 0
-
-# Extension Paracas
-xmin <- -76.75
-xmax <- -76.15
-ymin <- -14.25
-ymax <- -13.40
-
-extension <- extent(xmin, xmax, ymin, ymax)
-for (i in 1:length(nc_files)) {
-  ras <- raster(nc_files[i], varname = "chlor_a")
-  rc <- crop(ras, extension)
-  rc[is.na(rc)] <- -1
-  
-  pts <- rasterToPoints(x = rc)
-  if (i == 1) {
-    lon <- pts[,1]
-    lat <- pts[,2]
-    time_serie <- matrix(nrow = dim(pts)[1], ncol = length(nc_files))
-  }
-  time_serie[,i] <- pts[,3]
-  print(nc_files[i])
-}
-time_serie[time_serie == -1] <- NA
-serie <- apply(time_serie, c(2), mean, na.rm = T)
-fechas <- seq(as.Date('2002-07-04'), length.out = length(nc_files), by = 'day')
-x11();plot(fechas, serie, type = 'l', xlab = '', ylab = 'chl-a')
+a <- cropZone_getTimeSerie(files = files, zones = zones)
