@@ -12,7 +12,7 @@ cropZone_getTimeSerie <- function(files, zones, varname = 'chlor_a'){
   library(raster)
   library(ncdf4)
   
-  time_serie_mat <- matrix(NA, ncol = dim(zones)[1], nrow = length(files))
+  time_serie_mat <- matrix(NA, ncol = length(files), nrow = dim(zones)[1])
   for(i in 1:length(files)){
     ras <- raster(files[i], varname = varname)
     for(jj in 1:dim(zones)[1]){
@@ -23,7 +23,7 @@ cropZone_getTimeSerie <- function(files, zones, varname = 'chlor_a'){
       if (is.nan(pts)) {
         pts <- NA
       }
-      time_serie_mat[i, jj] <- pts
+      time_serie_mat[jj, i] <- pts
     }
     print(files[i])
   }
@@ -32,12 +32,3 @@ cropZone_getTimeSerie <- function(files, zones, varname = 'chlor_a'){
 #=============================================================================#
 # END OF PROGRAM
 #=============================================================================#
-
-dirpath <- 'D:/Clorofila/'
-files <- list.files(path = dirpath, pattern = '.nc', full.names = T, recursive = T)
-files <- files[1:10]
-zones <- matrix(c(-81.22, -80.7, -5.89, -5.18,  # Sechura
-                  -76.75, -76.15, -14.25, -13.40 # Paracas
-                  ), ncol = 4, byrow = T)
-
-a <- cropZone_getTimeSerie(files = files, zones = zones)
