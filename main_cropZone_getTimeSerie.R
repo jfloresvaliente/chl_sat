@@ -6,15 +6,6 @@
 # Aim    : 
 # URL    : 
 #=============================================================================#
-
-# dirpath <- 'G:/Clorofila/'
-# files <- list.files(path = dirpath, pattern = '.nc', full.names = T, recursive = T)
-# # files <- files[1:11831]
-# zones <- matrix(c(-81.22, -80.7, -5.89, -5.18,  # Sechura
-#                   -76.75, -76.15, -14.25, -13.40 # Paracas
-# ), ncol = 4, byrow = T)
-# 
-# a <- cropZone_getTimeSerie(files = files, zones = zones)
 source('F:/GitHub/chl_sat/cropZone_getTimeSerie.R')
 res <- 1/6
 
@@ -23,10 +14,8 @@ mask <- read.table(file = 'C:/Users/ASUS/Desktop/mask_grid.csv'); mask <- as.mat
 lon  <- read.table(file = 'C:/Users/ASUS/Desktop/lon_grid.csv') ; lon  <- as.matrix(lon)
 lat  <- read.table(file = 'C:/Users/ASUS/Desktop/lat_grid.csv') ; lat  <- as.matrix(lat)
 fields::image.plot(lon,lat,mask)
-# x11(); fields::image.plot(lon[,1], lat[1,], mask, ylim = c(-20,0), xlim = c(-85,-70))
 
-#mask[mask==0] = NA
-pixel_off <- 10
+pixel_off <- 15
 a <- mask[-c(1:pixel_off), ] # quito 6 filas de la parte superior
 b <- matrix (0 , pixel_off , ncol(a)) # crea una matriz de ceros para suplir las faltantes
 c <- rbind(a,b) # suma a (con filas faltantes) y b (con las filas llenas de ceros)
@@ -47,22 +36,19 @@ lat <- as.vector(lat)
 mask <- as.vector(mask)
 
 pixelsOK <- cbind(lon, lat, mask)
-# pixelsOK <- subset(pixelsOK, pixelsOK[,2] >= -20 & pixelsOK[,2] <= 0)
-# pixelsOK <- subset(pixelsOK, pixelsOK[,1] >= -85 & pixelsOK[,1] <= -70)
 pixelsOK <- subset(pixelsOK, pixelsOK[,3] ==1)
 colnames(pixelsOK) <- c('lon', 'lat', 'mask'); dim(pixelsOK)
 
-lonmin <- pixelsOK[,1] - res
-lonmax <- pixelsOK[,1] + res
-latmin <- pixelsOK[,2] - res
-latmax <- pixelsOK[,2] + res
+lonmin <- pixelsOK[,1] - (res/2)
+lonmax <- pixelsOK[,1] + (res/2)
+latmin <- pixelsOK[,2] - (res/2)
+latmax <- pixelsOK[,2] + (res/2)
 
 zones <- cbind(lonmin, lonmax, latmin, latmax)
 # zones <- zones[1:10,]
 
 dirpath <- 'G:/Clorofila/'
-
-for(year in 2002:2002){
+for(year in 2002:2010){
   subdir <- paste0(dirpath, year)
   files <- list.files(path = subdir, pattern = '.nc', full.names = T, recursive = T)
   a <- cropZone_getTimeSerie(files = files, zones = zones)
