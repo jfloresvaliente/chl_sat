@@ -14,7 +14,6 @@ cropZone <- function(dirpath,
                      pre_name = 'peru'){
 
   library(raster)
-  
   rasterFiles <- list.files(path = dirpath, pattern = pattern, full.names = F, recursive = T)
   
   for(i in 1:length(rasterFiles)){
