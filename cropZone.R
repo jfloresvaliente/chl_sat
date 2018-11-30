@@ -29,11 +29,23 @@ cropZone <- function(dirpath,
 #=============================================================================#
 # END OF PROGRAM
 #=============================================================================#
+dirpath <- 'D:/Clorofila/'
+pre_name <- 'ChaCoLs'
+dir.create(path = paste0(dirpath, 'crop_',pre_name), showWarnings = F)
+xmn <- -77.25
+xmx <- -76.95
+ymn <- -12.5
+ymx <- -12
+
 for(year in 2002:2018){
-  dirpath <- paste0('G:/Clorofila/', year, '/')
-  out_path <- paste0('G:/Clorofila/crop_Peru/', year, '/')
+  dirpath_in <- paste0(dirpath, year, '/')
+  out_path <- paste0(dirpath, 'crop_', pre_name, '/',year, '/')
   dir.create(path = out_path, showWarnings = F)
-  # cropZone(dirpath, out_path, pre_name = sechura, xmn = -81.7, xmx = -80.7, ymn = -6, ymx = -5)
-  cropZone(dirpath, out_path)
+  
+  cropZone(dirpath = dirpath_in,
+           out_path = out_path,
+           pre_name = tolower(pre_name),
+           xmn = xmn, xmx = xmx, ymn = ymn, ymx = ymx)
+  # cropZone(dirpath, out_path)
 }
 rm(list = ls())
