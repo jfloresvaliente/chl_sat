@@ -10,9 +10,9 @@ source('F:/GitHub/chl_sat/cropZone_getTimeSerie.R')
 res <- 1/6
 
 x11()
-mask <- read.table(file = 'C:/Users/ASUS/Desktop/mask_grid.csv'); mask <- as.matrix(mask)
-lon  <- read.table(file = 'C:/Users/ASUS/Desktop/lon_grid.csv') ; lon  <- as.matrix(lon)
-lat  <- read.table(file = 'C:/Users/ASUS/Desktop/lat_grid.csv') ; lat  <- as.matrix(lat)
+mask <- read.table(file = 'F:/GitHub/kinesis/data/mask_grid.csv'); mask <- as.matrix(mask)
+lon  <- read.table(file = 'F:/GitHub/kinesis/data/lon_grid.csv') ; lon  <- as.matrix(lon)
+lat  <- read.table(file = 'F:/GitHub/kinesis/data/lat_grid.csv') ; lat  <- as.matrix(lat)
 fields::image.plot(lon,lat,mask)
 
 pixel_off <- 15
