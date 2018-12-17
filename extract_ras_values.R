@@ -1,5 +1,5 @@
 #=============================================================================#
-# Name   : main_chl_sat
+# Name   : extract_ras_values
 # Author : Jorge Flores
 # Date   : 
 # Version:
@@ -12,7 +12,7 @@ library(maps)
 library(mapdata)
 library(imputeTS)
 
-dirpath <- 'D:/Clorofila/crop_Miraflores/'
+dirpath <- 'D:/Clorofila/crop_Chimbote/'
 umbrales <- c(1,10,15,20)
 
 rasterFiles <- list.files(path = dirpath, pattern = '.*\\.nc', full.names = T, recursive = T)
@@ -125,8 +125,6 @@ for(year in 2002:2018){
   yearDF <- NAinterp[,year_ind]; dim(yearDF)
   
   # CONTABILIZAR EL NUMERO DE FLORACIONES
-  umbrales <- c(1,10,15,20)
-  
   pngfile <- paste0(dirpath, year, 'floraciones.png')
   png(filename = pngfile, height = 950, width = 1050, res = 120)
   par(mfrow = c(2,2), mar = c(2.5, 2,1, 2))
@@ -148,7 +146,7 @@ for(year in 2002:2018){
 }
 
 
-# 211-217 # dias 2002 que faltan
+# 211-217 # dias 2002 que faltan, PERO NO ESTAN DISPONIBLES EN EL SATELITE
 
 # # Con esto se puede bambiar la resolucion del raster
 # library(raster)

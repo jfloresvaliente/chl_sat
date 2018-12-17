@@ -29,7 +29,7 @@ cropZone <- function(
   }
 }
 #=============================================================================#
-# END OF PROGRAM
+# END OF FUNCTION
 #=============================================================================#
 dirpath <- 'D:/Clorofila/'
 library(maps)
@@ -42,12 +42,12 @@ library(mapdata)
 # ymn <- -20
 # ymx <- 0
 
-#-----PERU DOMAIN-----#
-pre_name <- 'Peru4'
-xmn <- -90
-xmx <- -70
-ymn <- -20
-ymx <- -15
+# #-----PERU DOMAIN-----#
+# pre_name <- 'Peru4'
+# xmn <- -90
+# xmx <- -70
+# ymn <- -20
+# ymx <- -15
 
 # #-----SECHURA DOMAIN-----#
 # pre_name <- 'Sechura'
@@ -62,6 +62,13 @@ ymx <- -15
 # xmx <- -77
 # ymn <- -12.25
 # ymx <- -11.9
+
+# #-----CHIMBOTE DOMAIN-----#
+pre_name <- 'Chimbote'
+xmn <- -78.8
+xmx <- -78.4
+ymn <- -9.4
+ymx <- -8.9
 
 # DO NOT CHANGE ANYTHIG AFTER HERE #
 new_folder <- paste0(dirpath, 'crop_', pre_name)
@@ -85,3 +92,6 @@ for(year in 2002:2018){
            xmn = xmn, xmx = xmx, ymn = ymn, ymx = ymx)
 }
 rm(list = ls())
+#=============================================================================#
+# END OF PROGRAM
+#=============================================================================#
