@@ -11,20 +11,19 @@ library(mapdata)
 library(fields)
 library(rangeBuilder)
 
-dirpath <- 'D:/Clorofila/crop_Peru/regrid/'
-xlim <- c(-85,-70)
-ylim <- c(-20,0)
+dirpath <- 'D:/Clorofila/crop_AfricaNW/regrid/'
+xlim <- c(-25,-10)
+ylim <- c(4,30)
 zlim <- c(0,15)
 
 for (year in 2002:2018) {
   new_path <- paste0(dirpath, year, '/')
   
   rasfiles <- list.files(path = new_path,pattern = '.nc',full.names = T,recursive = T)
-  # rasfiles <- rasfiles[1:90]
-  ras <- raster(rasfiles[1]);dim(ras)
+  ras <- raster(rasfiles[1])
   
   mat <- matrix(data=NA, nrow = dim(ras)[1]*dim(ras)[2], ncol = length(rasfiles))
-  for (i in 1:length(rasfiles)) {
+  for(i in 1:length(rasfiles)){
     miras <- raster(rasfiles[i])
     mat[,i] <- getValues(miras)
     print(rasfiles[i])
@@ -68,6 +67,9 @@ axis(side = 1, font = 2, lwd.ticks = 2, cex.axis = 1.5)
 axis(side = 2, font = 2, lwd.ticks = 2, cex.axis = 1.5, las = 2)
 map('worldHires', add=T, fill=T, col='gray')
 addRasterLegend(ras, location = c(-71,-70,-15,-3), ramp = tim.colors(64), minmax = zlim, digits = 0, cex.axis = 2)
+# addRasterLegend(r = ras, direction = 'vertical', shortFrac = .05, longFrac = 0.5,
+#                 ramp = tim.colors(64), minmax = zlim, digits = 0, cex.axis = 2,
+#                 location = 'left', adj = 0.5)
 box(lwd = 2)
 dev.off()
 #=============================================================================#

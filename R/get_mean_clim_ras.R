@@ -34,7 +34,7 @@ meses <- c('01', '02', '03', '04', '05', '06',
 png(filename = paste0(dirpath, 'clim_chl.png'), width = 1250, height = 1050, res = 120)
 par(mfrow = c(3, 4),        # 2x2 layout
     oma = c(2, 2, 1, 0.5),  # two rows of text at the outer left and bottom margin
-    mar = c(1, 1, .5, 1.7), # space for one row of text at ticks and to separate plots
+    mar = c(1, 1, .5, 1.2), # space for one row of text at ticks and to separate plots
     mgp = c(2, .5, 0),      # axis label at 2 rows distance, tick labels at 1 row
     xpd = F,                # allow content to protrude into outer margin (and beyond)
     font = 2)
