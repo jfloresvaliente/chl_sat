@@ -11,9 +11,9 @@ library(mapdata)
 library(fields)
 library(rangeBuilder)
 
-dirpath <- 'D:/Clorofila/crop_AfricaNW/regrid/'
-xlim <- c(-25,-10)
-ylim <- c(4,30)
+dirpath <- 'D:/Clorofila/crop_Cherrepe/'
+xlim <- c(-80,-79.5)
+ylim <- c(-7.33,-7.01)
 zlim <- c(0,15)
 
 for (year in 2002:2018) {
@@ -66,10 +66,10 @@ grid()
 axis(side = 1, font = 2, lwd.ticks = 2, cex.axis = 1.5)
 axis(side = 2, font = 2, lwd.ticks = 2, cex.axis = 1.5, las = 2)
 map('worldHires', add=T, fill=T, col='gray')
-addRasterLegend(ras, location = c(-71,-70,-15,-3), ramp = tim.colors(64), minmax = zlim, digits = 0, cex.axis = 2)
-# addRasterLegend(r = ras, direction = 'vertical', shortFrac = .05, longFrac = 0.5,
-#                 ramp = tim.colors(64), minmax = zlim, digits = 0, cex.axis = 2,
-#                 location = 'left', adj = 0.5)
+# addRasterLegend(ras, location = c(-71,-70,-15,-3), ramp = tim.colors(64), minmax = zlim, digits = 0, cex.axis = 2)
+addRasterLegend(ras, location = 'top', direction = 'horizontal',
+                ramp = tim.colors(64), minmax = zlim, digits = 0,
+                cex.axis = 2)
 box(lwd = 2)
 dev.off()
 #=============================================================================#

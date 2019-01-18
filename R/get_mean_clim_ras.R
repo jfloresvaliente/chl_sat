@@ -12,9 +12,9 @@ library(mapdata)
 library(fields)
 library(rangeBuilder)
 
-dirpath <- 'D:/Clorofila/crop_Peru/regrid/'
-xlim <- c(-85,-70)
-ylim <- c(-20,0)
+dirpath <- 'D:/Clorofila/crop_Cherrepe/'
+xlim <- c(-80,-79.5)
+ylim <- c(-7.33,-7.01)
 zlim <- c(0,15)
 
 filenames <- list.files(path = dirpath, pattern = '.nc', recursive = T, full.names = T)
@@ -63,7 +63,12 @@ for (i in 1:12) {
     axis(side = 1, font = 2, lwd.ticks = 2, cex.axis = 1.5)}
   map('worldHires', add=T, fill=T, col='gray')
   legend('bottomleft', legend = paste('Mes', i), cex = 1.5)
-  addRasterLegend(ras, location = c(-71,-70,-15,-3), ramp = tim.colors(64), minmax = zlim, digits = 0, cex.axis = 2)
+  # addRasterLegend(ras, location = c(-71,-70,-15,-3), ramp = tim.colors(64), minmax = zlim, digits = 0, cex.axis = 2)
+  if(i == 1 | i == 2 | i == 3 | i == 4){
+    addRasterLegend(ras, location = 'top', direction = 'horizontal',
+                    ramp = tim.colors(64), minmax = zlim, digits = 0,
+                    cex.axis = 2)
+  }
   box(lwd = 2)
 }
 dev.off()

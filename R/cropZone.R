@@ -60,12 +60,12 @@ year_on <- 2018
 # ymn <- -20
 # ymx <- 0
 
-#-----AFRICA NW DOMAIN-----#
-pre_name <- 'AfricaNW'
-xmn <- -25
-xmx <- -10
-ymn <- 4
-ymx <- 30
+# #-----AFRICA NW DOMAIN-----#
+# pre_name <- 'AfricaNW'
+# xmn <- -25
+# xmx <- -10
+# ymn <- 4
+# ymx <- 30
 
 # #-----PERU DOMAIN by LAT-----#
 # pre_name <- 'Peru4'
@@ -95,6 +95,13 @@ ymx <- 30
 # ymn <- -9.4
 # ymx <- -8.9
 
+#-----CHERREPE DOMAIN-----#
+pre_name <- 'Cherrepe'
+xmn <- -80
+xmx <- -79.5
+ymn <- -7.33
+ymx <- -7.01
+
 #=============================================================================#
 # DO NOT CHANGE ANYTHIG AFTER HERE
 #=============================================================================#
@@ -103,7 +110,7 @@ dir.create(path = new_folder, showWarnings = F)
 
 #========== Plot map of  cropDomain ==========#
 png(filename = paste0(new_folder, '/cropDomain.png'), width = 850, height = 850, res = 120)
-map('worldHires', add=F, fill=T, col='gray', xlim = c(xmn, xmx), ylim = c(ymn, ymx))
+map('worldHires', add=F, fill=T, col='gray', xlim = c(xmn, xmx), ylim = c(ymn, ymx), mar = c(3.5,8,1,1))
 grid()
 axis(side = 1, font = 2, lwd.ticks = 2, cex.axis = 1.5)
 axis(side = 2, font = 2, lwd.ticks = 2, cex.axis = 1.5, las = 2)
