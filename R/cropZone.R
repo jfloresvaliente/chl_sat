@@ -51,7 +51,7 @@ library(mapdata)
 
 dirpath <- 'D:/Clorofila/'
 year_in <- 2002
-year_on <- 2018
+year_on <- 2019
 
 # #-----PERU DOMAIN-----#
 # pre_name <- 'Peru'
