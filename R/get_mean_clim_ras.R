@@ -12,7 +12,7 @@ library(mapdata)
 library(fields)
 library(rangeBuilder)
 
-dirpath <- 'D:/Clorofila/crop_Cherrepe/'
+dirpath <- 'D:/Clorofila/crop_Cherrepe/2018/'
 xlim <- c(-80,-79.5)
 ylim <- c(-7.33,-7.01)
 zlim <- c(0,15)
@@ -20,7 +20,7 @@ zlim <- c(0,15)
 filenames <- list.files(path = dirpath, pattern = '.nc', recursive = T, full.names = T)
 ras <- raster(filenames[1])
 
-days <- seq(from = as.Date('2002-01-01'), to = as.Date('2018-12-31'), by = 'day')
+days <- seq(from = as.Date('2002-01-01'), to = as.Date('2019-12-31'), by = 'day')
 days <- days[-c(211:217)]
 days <- days[c(185 : (185+length(filenames)-1) )]
 
