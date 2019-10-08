@@ -53,12 +53,12 @@ dirpath <- 'D:/Clorofila/'
 year_in <- 2002
 year_on <- 2019
 
-# #-----PERU DOMAIN-----#
-# pre_name <- 'Peru'
-# xmn <- -85
-# xmx <- -70
-# ymn <- -20
-# ymx <- 0
+#-----PERU DOMAIN-----#
+pre_name <- 'Peru'
+xmn <- -85
+xmx <- -70
+ymn <- -20
+ymx <- 0
 
 # #-----AFRICA NW DOMAIN-----#
 # pre_name <- 'AfricaNW'
@@ -95,12 +95,12 @@ year_on <- 2019
 # ymn <- -9.4
 # ymx <- -8.9
 
-#-----CHERREPE DOMAIN-----#
-pre_name <- 'Cherrepe'
-xmn <- -80
-xmx <- -79.5
-ymn <- -7.33
-ymx <- -7.01
+# #-----CHERREPE DOMAIN-----#
+# pre_name <- 'Cherrepe'
+# xmn <- -80
+# xmx <- -79.5
+# ymn <- -7.33
+# ymx <- -7.01
 
 #=============================================================================#
 # DO NOT CHANGE ANYTHIG AFTER HERE
