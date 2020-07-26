@@ -12,17 +12,28 @@ library(mapdata)
 library(fields)
 library(rangeBuilder)
 
-dirpath <- 'D:/Clorofila/crop_Cherrepe/2018/'
-xlim <- c(-80,-79.5)
-ylim <- c(-7.33,-7.01)
+dirpath <- 'D:/Clorofila/crop_Sechura/'
+year_in <- 2003
+year_on <- 2018
+xmn <- -81.5
+xmx <- -80.5
+ymn <- -6
+ymx <- -5
 zlim <- c(0,15)
+
+#=============================================================================#
+# DO NOT CHANGE ANYTHIG AFTER HERE
+#=============================================================================#
+xlim <- c(xmn,xmx)
+ylim <- c(ymn,ymx)
 
 filenames <- list.files(path = dirpath, pattern = '.nc', recursive = T, full.names = T)
 ras <- raster(filenames[1])
 
-days <- seq(from = as.Date('2002-01-01'), to = as.Date('2019-12-31'), by = 'day')
-days <- days[-c(211:217)]
-days <- days[c(185 : (185+length(filenames)-1) )]
+days <- seq(from = as.Date(paste0(year_in,'-01-01')), length.out = length(filenames), by = 'day')
+# days <- seq(from = as.Date(paste0(year_in,'-01-01')), to = as.Date(paste0(year_on,'-12-31')), by = 'day')
+# days <- days[-c(211:217)]
+# days <- days[c(185 : (185+length(filenames)-1) )]
 
 days <- strsplit(x = as.character(days), split = '-')
 days <- unlist(days)
@@ -38,7 +49,7 @@ par(mfrow = c(3, 4),        # 2x2 layout
     mgp = c(2, .5, 0),      # axis label at 2 rows distance, tick labels at 1 row
     xpd = F,                # allow content to protrude into outer margin (and beyond)
     font = 2)
-# par(mfrow = c(3,4), lwd = 2)
+
 for (i in 1:12) {
   month <- matdays[,2]
   month <- which(month == meses[i])
@@ -53,8 +64,6 @@ for (i in 1:12) {
   mean_month <- apply(X = month_vals, MARGIN = c(1), FUN = mean, na.rm = T)
   ras[] <- mean_month
   
-  # png(filename = paste0(dirpath, meses[i],'clim_chl.png'), width = 850, height = 850, res = 120)
-  # par(lwd = 2)
   plot(ras, xlim = xlim, ylim = ylim, zlim = zlim, axes = F, legend = F, col = tim.colors(64))
   grid()
   if (i == 1 | i == 5 | i == 9){
@@ -63,7 +72,7 @@ for (i in 1:12) {
     axis(side = 1, font = 2, lwd.ticks = 2, cex.axis = 1.5)}
   map('worldHires', add=T, fill=T, col='gray')
   legend('bottomleft', legend = paste('Mes', i), cex = 1.5)
-  # addRasterLegend(ras, location = c(-71,-70,-15,-3), ramp = tim.colors(64), minmax = zlim, digits = 0, cex.axis = 2)
+
   if(i == 1 | i == 2 | i == 3 | i == 4){
     addRasterLegend(ras, location = 'top', direction = 'horizontal',
                     ramp = tim.colors(64), minmax = zlim, digits = 0,

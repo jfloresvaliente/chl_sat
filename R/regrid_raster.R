@@ -7,9 +7,9 @@
 # URL    : 
 #=============================================================================#
 library(raster)
-dirpath <- 'D:/Clorofila/crop_AfricaNW/'
-year_in <- 2002
-year_on <- 2018
+dirpath <- 'D:/Clorofila/crop_Sechura/'
+year_in <- 2003
+year_on <- 2019
 fact    <- 3 # dimesion en que se debe 'agregar'
 
 #=============================================================================#

@@ -12,11 +12,19 @@ library(fields)
 library(rangeBuilder)
 library(imputeTS)
 
-dirpath <- 'D:/Clorofila/crop_Peru/regrid/'
-xlim <- c(-85,-70)
-ylim <- c(-20,0)
+dirpath <- 'D:/Clorofila/crop_Sechura/'
+xmn <- -81.5
+xmx <- -80.5
+ymn <- -6
+ymx <- -5
 zlim <- c(0,15)
 umbrales <- c(1,10,15,20)
+
+#=============================================================================#
+# DO NOT CHANGE ANYTHIG AFTER HERE
+#=============================================================================#
+xlim <- c(xmn,xmx)
+ylim <- c(ymn,ymx)
 
 # dir.create(path = paste0(dirpath, 'interp/'), recursive = T, showWarnings = F)
 rasterFiles  <- list.files(path = dirpath, pattern = '.nc', recursive = T, full.names =T)
@@ -111,3 +119,6 @@ for(i in umbrales){
   box(lwd = 2)
 }
 dev.off()
+#=============================================================================#
+# END OF PROGRAM
+#=============================================================================#

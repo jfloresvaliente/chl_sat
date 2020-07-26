@@ -50,15 +50,15 @@ library(maps)
 library(mapdata)
 
 dirpath <- 'D:/Clorofila/'
-year_in <- 2002
-year_on <- 2019
+year_in <- 2003
+year_on <- 2018
 
-#-----PERU DOMAIN-----#
-pre_name <- 'Peru'
-xmn <- -85
-xmx <- -70
-ymn <- -20
-ymx <- 0
+# #-----PERU DOMAIN-----#
+# pre_name <- 'Peru'
+# xmn <- -85
+# xmx <- -70
+# ymn <- -20
+# ymx <- 0
 
 # #-----AFRICA NW DOMAIN-----#
 # pre_name <- 'AfricaNW'
@@ -80,6 +80,13 @@ ymx <- 0
 # xmx <- -80
 # ymn <- -7
 # ymx <- -4
+
+#-----SECHURA DOMAIN-----#
+pre_name <- 'Sechura'
+xmn <- -81.5
+xmx <- -80.5
+ymn <- -6
+ymx <- -5
 
 # #-----MIRAFLORES DOMAIN-----#
 # pre_name <- 'Miraflores'
